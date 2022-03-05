@@ -29,8 +29,7 @@ public class minotaur {
 			threads[i] = new Thread(guests[i]);
 			threads[i].start();
 		}
-		for (int i = 0; i < numGuests; i++)
-			threads[i].interrupt();
+
 		System.out.println("The leader claims everyone has been through the maze!");
 	}
 
