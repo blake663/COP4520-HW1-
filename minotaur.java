@@ -3,7 +3,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class minotaur {
 	static Random rand = new Random();
-	static AtomicBoolean cakeIsAvailable = new AtomicBoolean(false);
+	static AtomicBoolean cakeIsAvailable = new AtomicBoolean(true);
 	static AtomicBoolean finished = new AtomicBoolean(false);
 	static int numGuests = 0;
 	
@@ -47,7 +47,6 @@ class Guest implements Runnable {
 		if (!hasEatenCake) {
 			try {
 				waitABit();
-				hasEatenCake = minotaur.cakeIsAvailable.compareAndSet(true, false);
 				do {
 					Thread.sleep(100);
 					hasEatenCake = minotaur.cakeIsAvailable.compareAndSet(true, false);
@@ -73,7 +72,7 @@ class Guest implements Runnable {
 }
 
 class LeaderGuest extends Guest {
-	int count = 0;
+	static int count = 0;
 	
 	public LeaderGuest(int id) {
 		super(id);
